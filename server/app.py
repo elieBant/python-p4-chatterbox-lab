@@ -18,7 +18,7 @@ db.init_app(app)
 @app.route("/messages", methods=["GET", "POST"])
 def messages():
     if request.method == "GET":
-        messages = Message.query.order_by(Message.updated_at)
+        messages = Message.query.order_by(Message.created_at.asc())
         response = [message.to_dict() for message in messages]
         return make_response(response, 200)
     elif request.method == "POST":
